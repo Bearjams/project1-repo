@@ -3,134 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Etsy Registry</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
 
 </head>
 <body>
 
     <div class="container">
 
-        <select id="gift-items">
-            
-        </select>
+        <div id="menu-div">
+            <p>Pick an item category from the registry</p>
+            <select id="gift-items"></select>
+        </div>
 
-        <form id="etsy-search">
+        <div id="commit-button-div">
+            <p>Do you want to commit to purchase this item or choose a different one?</p>
+            <button id="commit-button">Commit</button>
+            <button id="new-item-button">New Item</button>
+        </div>
+
+        <div id="finished-div">
+        
+        </div>
+
+        <!-- <form id="etsy-search">
             <label for="keyword-input">Search Etsy</label><br>
             <input type="text" id="keyword-input">
             <input id="submit-button" type="submit" value="Submit">
-        </form>
+        </form> -->
 
         <div id="etsy-images" class="row"></div>
 
     </div>
-    
+
+
+    <!-- jQuery Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
 
-        var listArr = ["","earrings","blender","toaster","air fryer cover","cheese board","coasters","cutting board","pots and pan sets","pillows","knife block"];
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
+    <!-- Specific Firebase products we want (Database) -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-database.js"></script>
 
-
-        function addList(arr) {
-            for (var i=0;i<arr.length;i++) {
-                var newOption = $("<option>").val(arr[i]).text(arr[i]);
-                $("#gift-items").append(newOption);
-            }
-        }
-
-        addList(listArr);
-
-        $("#gift-items").on("click", function(){
-            if ($(this).val()==="") {
-                
-            } else {
-            console.log($(this).val());
-
-            var queryURL = "https://openapi.etsy.com/v2/listings/active?api_key=m9m58hszwc8pek4cyyk6r3vk&includes=Images&keywords=" + $(this).val();
-            
-
-            // var proxyURL = "https://cors-anywhere.herokuapp.com/";
-
-            // var queryURL = proxyURL + etsyURL;
-            console.log(queryURL);
-
-            $.ajax(
-                {url: queryURL,
-                method: "GET"}
-                ).then(function(response) {
-                    
-
-                    for (var i=0;i < 10;i++ ) {
-                        var title = response.results[i].title;
-                    
-                        var price = response.results[i].price;
-                        var image = response.results[i].Images[0].url_570xN
-                        var link = response.results[i].url;
-
-                    
-                        var newCard = $("<div>").addClass("card col-3 m-2");
-                        var cardImg = $("<img>").addClass("card-img-top").attr("src", image);
-                        newCard.append(cardImg);
-                        var cardBody = $("<div>").addClass("card-body");
-                        var cardTitle = $("<h5>").addClass("card-title").text(title);
-                        cardBody.append(cardTitle);
-                        var cardPrice = $("<p>").addClass("card-text").text(price);
-                        cardBody.append(cardPrice);
-                        var cardLink = $("<a>").addClass("btn btn-primary").attr("href", link).text("Link").attr("target", "_blank");
-                        cardBody.append(cardLink);
-                        newCard.append(cardBody);
-                        $("#etsy-images").prepend(newCard);
-                    }
-
-                });
-
-            }
-        });
-
-        $("#submit-button").on("click", function() {
-            event.preventDefault();
-            
-            var queryURL = "https://openapi.etsy.com/v2/listings/active?api_key=m9m58hszwc8pek4cyyk6r3vk&includes=Images&keywords=" + $("#keyword-input").val().trim();
-            
-
-            // var proxyURL = "https://cors-anywhere.herokuapp.com/";
-
-            // var queryURL = proxyURL + etsyURL;
-            console.log(queryURL);
-
-            $.ajax(
-                {url: queryURL,
-                method: "GET"}
-                ).then(function(response) {
-                    
-
-                    for (var i=0;i < 10;i++ ) {
-                        var title = response.results[i].title;
-                    
-                        var price = response.results[i].price;
-                        var image = response.results[i].Images[0].url_570xN
-                        var link = response.results[i].url;
-
-                    
-                        var newCard = $("<div>").addClass("card col-3 m-2");
-                        var cardImg = $("<img>").addClass("card-img-top").attr("src", image);
-                        newCard.append(cardImg);
-                        var cardBody = $("<div>").addClass("card-body");
-                        var cardTitle = $("<h5>").addClass("card-title").text(title);
-                        cardBody.append(cardTitle);
-                        var cardPrice = $("<p>").addClass("card-text").text(price);
-                        cardBody.append(cardPrice);
-                        var cardLink = $("<a>").addClass("btn btn-primary").attr("href", link).text("Link").attr("target", "_blank");
-                        cardBody.append(cardLink);
-                        newCard.append(cardBody);
-                        $("#etsy-images").prepend(newCard);
-                    }
-
-                })
-        });
-    </script>
-
-    
+    <!-- JD Javascript -->
+    <script src="assets/javascript/etsy-script.js"></script>
 </body>
 </html>
