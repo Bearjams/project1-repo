@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etsy Registry</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+
+    <div class="container">
+
+        <div id="menu-div">
+            <p>Pick an item category from the registry</p>
+            <select id="gift-items"></select>
+        </div>
+
+        <div id="commit-button-div">
+            <p>Do you want to commit to purchase this item or choose a different one?</p>
+            <button id="commit-button">Commit</button>
+            <button id="new-item-button">New Item</button>
+        </div>
+
+        <div id="finished-div">
+        
+        </div>
+
+        <!-- <form id="etsy-search">
+            <label for="keyword-input">Search Etsy</label><br>
+            <input type="text" id="keyword-input">
+            <input id="submit-button" type="submit" value="Submit">
+        </form> -->
+
+        <div id="etsy-images" class="row"></div>
+
+    </div>
+
+
+    <!-- jQuery Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
+    <!-- Specific Firebase products we want (Database) -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-database.js"></script>
+
+    <!-- JD Javascript -->
+    <script src="assets/javascript/etsy-script.js"></script>
+</body>
+</html>
