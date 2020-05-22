@@ -3,49 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etsy Registry</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <title>Document</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="assets/css/registry-style.css">
 </head>
 <body>
 
     <div class="container">
+        <h1>Gift Registry</h1>
 
-        <div id="menu-div">
+        <div id="menu-div" class="row">
+            <div class="col s8">
             <p>Pick an item category from the registry</p>
+            </div>
+            <div class="input-field col s6">
             <select id="gift-items"></select>
+            </div>
         </div>
 
         <div id="commit-button-div">
             <p>Do you want to commit to purchase this item or choose a different one?</p>
-            <button id="commit-button">Commit</button>
-            <button id="new-item-button">New Item</button>
+            <button id="commit-button" class="btn">Commit</button>
+            <button id="new-item-button" class="btn">New Item</button>
         </div>
 
-        <div id="finished-div">
-        
-        </div>
+        <div id="finished-div"></div>
 
-        <!-- <form id="etsy-search">
-            <label for="keyword-input">Search Etsy</label><br>
-            <input type="text" id="keyword-input">
-            <input id="submit-button" type="submit" value="Submit">
-        </form> -->
-
-        <div id="etsy-images" class="row"></div>
+        <div id="etsy-images" class="row section"></div>
 
     </div>
-
-
+    
     <!-- jQuery Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+    <!-- Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
     <!-- Specific Firebase products we want (Database) -->
     <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-database.js"></script>
-
-    <!-- JD Javascript -->
     <script src="assets/javascript/etsy-script.js"></script>
 </body>
 </html>

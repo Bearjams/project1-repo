@@ -12,9 +12,14 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+// Initialize Materialize Select dropdown
+$(document).ready(function(){
+    $('select').formSelect();
+  });
+
 var database = firebase.database();
 
-var listArr = ["","rustic candle holder","mid-century barware","boho wall hanging","quilt bedspread","hardwood charcuterie board","agate coasters","end grain cutting board","reclaimed wood desk","outdoor decorative pillows","vintage credenza"];
+var listArr = ["Pick a gift","rustic candle holder","mid-century barware","boho wall hanging","quilt bedspread","hardwood charcuterie board","agate coasters","end grain cutting board","reclaimed wood desk","outdoor decorative pillows","vintage credenza"];
 
 var arrString = JSON.stringify(listArr);
 
@@ -22,9 +27,9 @@ var dbListString;
 
 var currentItem;
 
-database.ref().set(arrString);
+database.ref("registry").set(arrString);
 
-database.ref().on("value", function(snapshot) {
+database.ref("registry").on("value", function(snapshot) {
     console.log(snapshot.val());
     dbListString = snapshot.val();
 })
@@ -40,12 +45,10 @@ function addList(arr) {
 
 addList(dbArr);
 
-// addList(listArr);
-
 $("#commit-button-div").hide();
 
-$("#gift-items").on("click", function(){
-    if ($(this).val()==="") {
+$("#gift-items").on("change", function(){
+    if ($(this).val()==="Pick a gift") {
         
     } else {
 
@@ -67,22 +70,28 @@ $("#gift-items").on("click", function(){
                 var title = response.results[i].title;
             
                 var price = response.results[i].price;
-                var image = response.results[i].Images[0].url_570xN
+                var image = response.results[i].Images[0].url_170x135;
                 var link = response.results[i].url;
 
-            
-                var newCard = $("<div>").addClass("card col-3 m-2");
-                var cardImg = $("<img>").addClass("card-img-top").attr("src", image);
+                var newCardCol = $("<div>").addClass("col s6 m4 l3")
+                var newCard = $("<div>").addClass("card hoverable");
+                var cardImg = $("<div>").addClass("card-image").append($("<img>").attr("src", image));
                 newCard.append(cardImg);
-                var cardBody = $("<div>").addClass("card-body");
-                var cardTitle = $("<h5>").addClass("card-title").text(title);
-                cardBody.append(cardTitle);
-                var cardPrice = $("<p>").addClass("card-text").text(price);
-                cardBody.append(cardPrice);
-                var cardLink = $("<a>").addClass("btn btn-primary").attr("href", link).text("Link").attr("target", "_blank");
-                cardBody.append(cardLink);
-                newCard.append(cardBody);
-                $("#etsy-images").prepend(newCard);
+                
+                var cardContent = $("<div>").addClass("card-content");
+                var cardTitle = $("<p>").addClass("truncate").text(title);
+                cardContent.append(cardTitle);
+                var cardPrice = $("<p>").text(price);
+                cardContent.append(cardPrice);
+                newCard.append(cardContent);
+
+                var cardAction = $("<div>").addClass("card-action");
+                var cardLink = $("<a>").addClass("btn").attr("href", link).text("Link").attr("target", "_blank");
+                cardAction.append(cardLink);
+                newCard.append(cardAction);
+
+                newCardCol.append(newCard);
+                $("#etsy-images").prepend(newCardCol);
 
                 $("#commit-button-div").show();
             }
@@ -98,14 +107,14 @@ $("#commit-button").on("click", function(){
 
     arrString = JSON.stringify(filteredArr);
 
-    database.ref().set(arrString);
+    database.ref("registry").set(arrString);
 
     $("#commit-button-div").hide();
     $("#finished-div").text("Thanks for commiting to purchase the " + currentItem + "! Please go to the music page to pick out songs for the DJ.");
 });
 
 $("#new-item-button").on("click", function() {
-    $("#gift-items").val("");
+    $("#gift-items").val("Pick a gift");
     $("#commit-button-div").hide();
     $("#menu-div").show();
     $("#etsy-images").empty();
