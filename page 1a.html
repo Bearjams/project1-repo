@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- jQuery Link  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+    
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper #e3f2fd blue lighten-5">
+                <div class="row">
+                    <div class="col s7 m2 valign-wrapper">
+                        <a class="modal-trigger " href="#login"><img src="/images/Logo.png" alt="" class="loginLogo "></a> 
+                    </div>
+                    <div class="col s7 m2 offset-m7 center-align">
+                        <ul>
+                            <li><button id="successBtn" data-target="modal1" class="btn btn-signUp btn-success modal-trigger center-align">Lets Get Started</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+            
+
+
+
+
+
+
+
+
+
+    <!-- Modal Trigger -->
+    <!-- <a class="waves-effect waves-teal btn  modal-trigger" href="#modal1">Lets Get Started</a> -->
+    <!-- <a href="#modal1" class="button red">Lets Get Started</a> -->
+
+
+
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal" text= "center">
+        
+        <div class="modal-content">
+            <h4>Write the couple a message</h4>
+            <!-- <form action="/index.html"></form> -->
+            <label for="from">From:</label>
+            <input type="text" id="from" name="from"><br><br>
+            <label for="message">Message:</label>
+            <input type="text" id="message" name="message"><br><br>
+
+
+            <!-- <p>A bunch of text</p> -->
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-blue   btn-flat">Submit</a>
+        </div>
+    </div>
+    <video class="responsive-video" controls autoplay loop muted>
+        <source src="assets/video.mp4" type="video/mp4">
+      </video>
+
+      <!-- <video preload="metadata" playsinline="" webkit-playsinline="" src="asset/video.mp4" style="width: 100%; height: 100%; pointer-events: none; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 1;"></video> -->
+
+
+    <script>
+        $(document).ready(function () {
+            $('.modal').modal();
+            $('#modal1').on('click', function () {
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</body>
+
+</html>
