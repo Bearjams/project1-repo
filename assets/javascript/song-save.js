@@ -13,47 +13,37 @@ function displayBandInfo(artist) {
         method: "GET"
     }).then(function (response) {
 
-        var bandDiv = $("<div class='band section teal lighten-4'>");
-
         var rating = response.data[0].artist.name;
-            console.log(rating)
-        var pOne = $("<p>").text("Band Name: " + rating);
-
-        bandDiv.append(pOne);
-
         released = response.data[0].preview;
+        var songName = response.data[0].title;
+        var imgURL = response.data[0].artist.picture_big;
 
-        //var pTwo = $("<audio>").attr("src", released);
+        var newCardCol = $("<div>").addClass("col s6 m4 l4");
 
-        var pTwo = $("<div>").html('<audio controls name="media" id="songPreview"><source src="'+ released +'" class="songPre"></audio></audio>')   
+        var newCard = $("<div>").addClass("card hoverable");
 
-        // var newsrc = $("<source>").attr("src", released).addClass("songPre");
+        var cardImg = $("<div>").addClass("card-image").append($("<img>").attr("src", imgURL));
+        newCard.append(cardImg);
 
-        // $("#songPreview").empty();
+        var cardContent = $("<div>").addClass("card-content");
+        var cardTitle = $("<p>").addClass("truncate").text("Band Name: " + rating);
+        cardContent.append(cardTitle);
 
-        // $("#songPreview").append(newsrc);
+        var cardPrice = $("<p>").text("Song Name: " + songName);
+        cardContent.append(cardPrice);
+        newCard.append(cardContent);
 
-        //$(".songPre").prepend(pTwo);
+        var cardPre =$("<div>").addClass("card-preview").html('<audio controls name="media" id="songPreview"><source src="' + released + '" class="songPre"></audio></audio>');
+        newCard.append(cardPre);
+        console.log(rating);
 
-        bandDiv.append(pTwo);
+        var addButton = $("<button>").addClass("btn dj-add-button").attr("data-artist", rating).attr("data-song", songName).text("Add Song");
 
-        var plot = response.data[0].title;
+        newCard.append(addButton);
 
-        var pThree = $("<p>").text("Song Name: " + plot);
+        newCardCol.append(newCard);
 
-        bandDiv.append(pThree);
-
-        var imgURL = response.data[0].artist.picture;
-
-        var image = $("<img>").attr("src", imgURL);
-
-        bandDiv.append(image);
-
-        var addButton = $("<button>").addClass("btn dj-add-button").attr("data-artist", rating).attr("data-song", plot).text("Add Song");
-
-        bandDiv.append(addButton);
-
-        $("#artists-view").prepend(bandDiv);
+        $("#artists-view").prepend(newCardCol);
     });
 
 }
@@ -81,6 +71,8 @@ $("#add-artist").on("click", function (event) {
 
     artist = $("#artist-input").val().trim();
 
+    $("#artist-input").val("");
+
     displayBandInfo(artist);
 
     bands.push(artist);
@@ -89,8 +81,8 @@ $("#add-artist").on("click", function (event) {
 
 });
 
-$(document).on("click", ".artist-btn", function(){
-    
+$(document).on("click", ".artist-btn", function () {
+
     artist = $(this).attr("data-name");
 
     displayBandInfo(artist);
@@ -132,7 +124,7 @@ function addTableRow() {
 
 }
 
-database.ref("dj-list").on("child_added", function(childSnapshot) {
+database.ref("dj-list").on("child_added", function (childSnapshot) {
 
     dbArtistName = childSnapshot.val().artistName;
     dbSongTitle = childSnapshot.val().songTitle;
@@ -140,7 +132,7 @@ database.ref("dj-list").on("child_added", function(childSnapshot) {
     addTableRow();
 });
 
-$(document).on("click", ".dj-add-button", function() {
+$(document).on("click", ".dj-add-button", function () {
 
     bandName = $(this).attr("data-artist");
     songName = $(this).attr("data-song");

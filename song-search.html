@@ -63,17 +63,7 @@
 
                     released = response.data[0].preview;
 
-                    //var pTwo = $("<audio>").attr("src", released);
-
                     var pTwo = $("<div>").html('<audio controls name="media" id="songPreview"><source src="'+ released +'" class="songPre"></audio></audio>')   
-
-                    // var newsrc = $("<source>").attr("src", released).addClass("songPre");
-
-                    // $("#songPreview").empty();
-
-                    // $("#songPreview").append(newsrc);
-
-                    //$(".songPre").prepend(pTwo);
 
                     bandDiv.append(pTwo);
 
@@ -116,6 +106,8 @@
                 event.preventDefault();
 
                 artist = $("#artist-input").val().trim();
+
+                $("#artist-input").val("");
 
                 displayBandInfo(artist);
 
