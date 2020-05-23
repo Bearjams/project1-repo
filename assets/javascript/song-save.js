@@ -18,7 +18,7 @@ function displayBandInfo(artist) {
         var songName = response.data[0].title;
         var imgURL = response.data[0].artist.picture_big;
 
-        var newCardCol = $("<div>").addClass("col s6 m4 l4");
+        var newCardCol = $("<div>").addClass("col s6 m6 l6");
 
         var newCard = $("<div>").addClass("card hoverable");
 
