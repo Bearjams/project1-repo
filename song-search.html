@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Artist Search</title>
+    <style type="text/css">
+        button,
+        div,
+        form,
+        input {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Song Search</h1>
+
+        <div id="buttons-view"></div>
+
+        <form id="band-form">
+            <label for="artist-input">Add a song request</label>
+            <input type="text" id="artist-input">
+            <br>
+
+            <input id="add-artist" type="submit" value="Party On!">
+        </form>
+
+        <!-- <audio controls name="media" id="songPreview">
+            <source src="" class="songPre"></audio>
+        </audio> -->
+
+        <div id="artists-view"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript">
+
+            var bands = ["When Doves Cry", "Billy Jean", "Thinking Out Loud", "24K Magic", "Funky Town"];
+            var released;
+            var artist;
+
+
+            function displayBandInfo(artist) {
+
+
+                var queryURL = "https://api.deezer.com/search?q=" + artist + "&api_key=9f6d61036b12b504cfec594cf6f8dfa6";
+                console.log(queryURL)
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                }).then(function (response) {
+
+                    var bandDiv = $("<div class='band'>");
+
+                    var rating = response.data[0].artist.name;
+                        console.log(rating)
+                    var pOne = $("<p>").text("Band Name: " + rating);
+
+                    bandDiv.append(pOne);
+
+                    released = response.data[0].preview;
+
+                    var pTwo = $("<div>").html('<audio controls name="media" id="songPreview"><source src="'+ released +'" class="songPre"></audio></audio>')   
+
+                    bandDiv.append(pTwo);
+
+                    var plot = response.data[0].title;
+
+                    var pThree = $("<p>").text("Song Name: " + plot);
+
+                    bandDiv.append(pThree);
+
+                    var imgURL = response.data[0].artist.picture;
+
+                    var image = $("<img>").attr("src", imgURL);
+
+                    bandDiv.append(image);
+
+                    $("#artists-view").prepend(bandDiv);
+                });
+
+            }
+
+            function renderButtons() {
+
+                $("#buttons-view").empty();
+
+                for (var i = 0; i < bands.length; i++) {
+
+                    var a = $("<button>");
+
+                    a.addClass("artist-btn");
+
+                    a.attr("data-name", bands[i]);
+
+                    a.text(bands[i]);
+
+                    $("#buttons-view").append(a);
+                }
+            }
+
+            $("#add-artist").on("click", function (event) {
+                event.preventDefault();
+
+                artist = $("#artist-input").val().trim();
+
+                $("#artist-input").val("");
+
+                displayBandInfo(artist);
+
+                bands.push(artist);
+
+
+
+
+
+                renderButtons();
+
+            });
+            
+            $(document).on("click", ".artist-btn", function(){
+                
+                artist = $(this).attr("data-name");
+
+                displayBandInfo(artist);
+            })
+
+            renderButtons();
+        </script>
+    </div>
+</body>
+
+</html>

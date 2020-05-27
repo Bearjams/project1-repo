@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Save</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <style>
+        .band {
+            margin-bottom: 20px;
+        }
+
+        img {
+            display: block;
+        }
+
+        button {
+            margin: 5px;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        .card-preview {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dj-add-button {
+            /* display: flex;  */
+            position: relative;
+            justify-content: center;
+            align-items: center;
+            margin-left: auto;
+            margin-right: auto; 
+        }
+
+        /* #songPreview {
+            display: flex;
+            justify-content: center;
+            align-items: center
+        } */
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-wrapper teal lighten-1">
+            <a href="#" class="brand-logo right"><img src="assets/images/christian-wedding-symbols-14.png" width="75" height="65"></a>
+          <ul id="nav-mobile" class="left">   
+            <li><a href="etsy.html">Registry</a></li>
+            <li><a href="song-save.html">Dj Playlist</a></li>
+          </ul>
+        </div>
+    </nav>
+    <div class="container">
+
+
+        <div class="container">
+            <div>
+                <h1 class="center-align">Song Search</h1>
+            </div>
+            <!-- <h1>Song Search</h1> -->
+            <div class="row">
+                <div class="col s12">
+                    <table class="highlight centered">
+                        <thead class="grey-text text-darken-2">
+                            <tr>
+                                <th>Artist Name</th>
+                                <th>Song Title</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-rows">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+
+            <div id="buttons-view" class="section"></div>
+
+            <form id="band-form" class="section">
+                <div class="input-field">
+                    <label for="artist-input">Add a song request</label>
+                    <input type="text" id="artist-input">
+                </div>
+                <button class="btn" id="add-artist" type="submit">Party On!</button>
+                <!-- <input id="add-artist" type="submit" value="Party On!"> -->
+            </form>
+
+            <div id="artists-view" class="section row"></div>
+        </div>
+
+
+        <!-- Materialize JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <!-- jQuery Library -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- Firebase -->
+        <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
+        <!-- Specific Firebase products we want (Database) -->
+        <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-database.js"></script>
+        <script src="assets/javascript/song-save.js"></script>
+</body>
+
+</html>
