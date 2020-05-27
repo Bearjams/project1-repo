@@ -37,9 +37,11 @@ function displayBandInfo(artist) {
         newCard.append(cardPre);
         console.log(rating);
 
-        var addButton = $("<button>").addClass("btn dj-add-button").attr("data-artist", rating).attr("data-song", songName).text("Add Song");
+        var alignDiv = $("<div>").addClass("valign-wrapper");
 
-        newCard.append(addButton);
+        var addButton = $("<button>").addClass("btn dj-add-button").attr("data-artist", rating).attr("data-song", songName).text("Add Song");
+        alignDiv.append(addButton);
+        newCard.append(alignDiv);
 
         newCardCol.append(newCard);
 
