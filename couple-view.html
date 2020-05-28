@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Wedding Page</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper teal lighten-1">
+            <ul class="right">   
+                <li><a class="btn" href="index.html">YOUR PAGE</a></li>
+                
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Your Wedding Page</h1>
+        <p>Click the button above to view your guests' page.</p>
+
+        <div class="row">
+            <div class="section teal lighten-2 col s12 card-panel" id="messages">
+                <h4>Messages</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="section teal lighten-2 col s12 card-panel" id="songs">
+                <h4>Songs</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="section teal lighten-2 col s12 card-panel">
+                <h4>Registry - Items Left</h4>
+                <div id="registry">
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <!-- jQuery Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
+    <!-- Specific Firebase products we want (Database) -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-database.js"></script>
+    <script src="assets/javascript/bride-view.js"></script>
+</body>
+</html>
