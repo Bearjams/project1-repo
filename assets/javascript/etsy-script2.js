@@ -80,12 +80,12 @@ $("#gift-items").on("change", function(){
                 var cardContent = $("<div>").addClass("card-content");
                 var cardTitle = $("<p>").addClass("truncate").text(title);
                 cardContent.append(cardTitle);
-                var cardPrice = $("<p>").text(price);
+                var cardPrice = $("<p>").addClass("center-align").text("$"+price);
                 cardContent.append(cardPrice);
                 newCard.append(cardContent);
 
                 var cardAction = $("<div>").addClass("card-action");
-                var cardLink = $("<a>").addClass("btn").attr("href", link).text("Link").attr("target", "_blank");
+                var cardLink = $("<p>").addClass("center-align").append($("<a>").addClass("btn").attr("href", link).text("Link").attr("target", "_blank"));
                 cardAction.append(cardLink);
                 newCard.append(cardAction);
 
