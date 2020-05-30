@@ -2,6 +2,8 @@ var bands = ["When Doves Cry", "Billy Jean", "Thinking Out Loud", "24K Magic", "
 var released;
 var artist;
 
+var songsSelectedArr = [];
+
 
 function displayBandInfo(artist) {
 
@@ -131,6 +133,16 @@ database.ref("dj-list").on("child_added", function (childSnapshot) {
     dbArtistName = childSnapshot.val().artistName;
     dbSongTitle = childSnapshot.val().songTitle;
 
+    var songSelected = dbArtistName + dbSongTitle;
+
+    if (songsSelectedArr.includes(songSelected)) {
+
+    } else {
+
+    songsSelectedArr.push(songSelected);
+
+    }
+
     addTableRow();
 });
 
@@ -139,11 +151,19 @@ $(document).on("click", ".dj-add-button", function () {
     bandName = $(this).attr("data-artist");
     songName = $(this).attr("data-song");
 
+    var songSelectedAdd = bandName + songName;
+
     var songSelectObjet = {
         artistName: bandName,
         songTitle: songName
     }
 
+    if (songsSelectedArr.includes(songSelectedAdd)) {
+        console.log("this song already added");
+    } else {
+
     database.ref("dj-list").push(songSelectObjet);
+
+    }
 })
 
