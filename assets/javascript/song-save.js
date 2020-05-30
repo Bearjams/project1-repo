@@ -73,15 +73,20 @@ function renderButtons() {
 $("#add-artist").on("click", function (event) {
     event.preventDefault();
 
-    artist = $("#artist-input").val().trim();
+    if ($("#artist-input").val()==="") {
+        console.log("empty input field")
+    } else {
 
-    $("#artist-input").val("");
+        artist = $("#artist-input").val().trim();
 
-    displayBandInfo(artist);
+        $("#artist-input").val("");
 
-    bands.push(artist);
+        displayBandInfo(artist);
 
-    renderButtons();
+        bands.push(artist);
+
+        renderButtons();
+    }
 
 });
 
